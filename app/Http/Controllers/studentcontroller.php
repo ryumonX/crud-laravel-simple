@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\jurusan;
+use App\Models\Departement;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -10,9 +10,9 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $jurusans = jurusan::all();
+        $Departements = Departement::all();
         $students = Student::all();
-        return view('utama', compact('students','jurusans'));
+        return view('Layout.Views.Utama', compact('students','Departements'));
 
 
     }
@@ -39,13 +39,13 @@ class StudentController extends Controller
             'address' => 'required',
         ]);
 
-        $student->update($request->all()); // Memperbarui data siswa
+        $student->update($request->all());
         return redirect()->route('students.index')->with('success', 'Student updated successfully.');
     }
 
     public function destroy(Student $student)
     {
-        $student->delete(); // Menghapus data siswa
+        $student->delete();
         return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
     }
 }

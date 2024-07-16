@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class student extends Model
 {
     use HasFactory;
-    protected $table ="students";
+
     protected $fillable = [
         'name', 'nim', 'department', 'address',
+    ];
+
+    protected $casts = [
+        'timestamp' => 'datetime',
     ];
 }
